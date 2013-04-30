@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json"
+    xmlns:translink="http://www.mulesoft.org/schema/mule/translink" xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+    xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:spring="http://www.springframework.org/schema/beans"
+    version="CE-3.4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/translink http://www.mulesoft.org/schema/mule/translink/current/mule-translink.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
+    <translink:config apiKey="${translink.api.key}" />
+
+    <flow name="testApi">
+        <vm:inbound-endpoint path="test.in"
+            exchange-pattern="request-response" />
+
+        <translink:get-stop stopNumber="55612" />
+        <logger level="WARN" message="Stop: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-stops latitude="49.187706" longitude="-122.850060" />
+        <logger level="WARN"
+            message="Stops at lat/lon: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-stops-for-route latitude="49.187706"
+            longitude="-122.850060" routeNumber="590" />
+        <logger level="WARN"
+            message="Stops at lat/lon for route: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-stop-estimates stopNumber="60980" />
+        <logger level="WARN"
+            message="Stop estimates: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-stop-estimates-for-route
+            stopNumber="60980" routeNumber="050" />
+        <logger level="WARN"
+            message="Stop estimates for route: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-buses-at-stop stopNumber="55385" />
+        <logger level="WARN"
+            message="Buses at stop number: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-buses-for-route
+            routeNumber="351" />
+        <logger level="WARN"
+            message="Buses for route number: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-buses-for-route-at-stop
+            stopNumber="55385" routeNumber="351" />
+        <logger level="WARN"
+            message="Buses for route and at stop numbers: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-bus busNumber="#[message.payload[0].VehicleNo]" />
+        <logger level="WARN"
+            message="Bus by bus number: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-route routeNumber="351" />
+        <logger level="WARN"
+            message="Route by route number: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-routes stopNumber="55385" />
+        <logger level="WARN"
+            message="Routes by stop number: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-statuses />
+        <logger level="WARN"
+            message="All statuses: #[message.payloadAs(java.lang.String)]" />
+
+        <translink:get-statuses service="Location" />
+        <logger level="WARN"
+            message="Location status: #[message.payloadAs(java.lang.String)]" />
+    </flow>
+
+</mule>
