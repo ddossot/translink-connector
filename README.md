@@ -1,4 +1,4 @@
-# TransLink Connector
+# TransLink Connector for Mule
 
 Connects Mule to the [TransLink Open API](http://developer.translink.ca/)
 

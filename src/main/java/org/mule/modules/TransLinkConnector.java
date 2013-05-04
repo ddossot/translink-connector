@@ -1,3 +1,8 @@
+/**
+ * MIT license.
+ *
+ * Copyright (c) 2013 David Dossot
+ */
 
 package org.mule.modules;
 
@@ -113,7 +118,7 @@ public abstract class TransLinkConnector
         throws IOException;
 
     @TransformerResolver
-    public static org.mule.api.transformer.Transformer transformerResolver(@SuppressWarnings("unused") final DataType<?> source,
+    public static org.mule.api.transformer.Transformer transformerResolver(final DataType<?> source,
                                                                            final DataType<?> result,
                                                                            final MuleContext muleContext)
         throws Exception
