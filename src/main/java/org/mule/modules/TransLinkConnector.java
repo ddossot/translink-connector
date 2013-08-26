@@ -88,6 +88,10 @@ public abstract class TransLinkConnector
 
     @Processor
     @RestCall(uri = "http://api.translink.ca/RTTIAPI/V1/buses", method = HttpMethod.GET, contentType = "application/json", exceptions = {@RestExceptionOn(expression = "#[message.inboundProperties['http.status'] != 200]")})
+    public abstract List<Map<String, Object>> getBuses() throws IOException;
+
+    @Processor
+    @RestCall(uri = "http://api.translink.ca/RTTIAPI/V1/buses", method = HttpMethod.GET, contentType = "application/json", exceptions = {@RestExceptionOn(expression = "#[message.inboundProperties['http.status'] != 200]")})
     public abstract List<Map<String, Object>> getBusesAtStop(@RestQueryParam("StopNo") int stopNumber)
         throws IOException;
 

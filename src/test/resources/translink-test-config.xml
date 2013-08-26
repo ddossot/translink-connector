@@ -37,6 +37,10 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
         <logger level="WARN"
             message="Stop estimates for route: #[message.payloadAs(java.lang.String)]" />
 
+        <translink:get-buses />
+        <logger level="WARN"
+            message="All buses: #[message.payloadAs(java.lang.String)]" />
+
         <translink:get-buses-at-stop stopNumber="55385" />
         <logger level="WARN"
             message="Buses at stop number: #[message.payloadAs(java.lang.String)]" />

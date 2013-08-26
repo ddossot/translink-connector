@@ -10,7 +10,7 @@
 
     <groupId>org.mule.modules</groupId>
     <artifactId>mule-module-translink</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>mule-module</packaging>
     <name>TransLink Connector</name>
     <description>Connects Mule to the TransLink Open API: http://developer.translink.ca/</description>
